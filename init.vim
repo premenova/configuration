@@ -16,6 +16,8 @@ set laststatus=1
 set nobackup
 set nowritebackup
 set noundofile
+set laststatus=2
+set statusline=%F
 set viminfo=
 
 " Filetype-specific indentation settings
@@ -54,5 +56,11 @@ vnoremap <S-Down> 4j
 " Set the colors for Visual mode selection
 highlight Visual ctermbg=white ctermfg=black guibg=NONE guifg=NONE
 
-" Make Alt+W behave like Ctrl+W”
+" Make Alt+W behave like Ctrl+W
 nnoremap <A-w> <C-w>
+
+" Copy current file name to Windows clipboard (WSL)
+noremap /filename :call system('/mnt/c/Windows/System32/clip.exe', expand('%:t')) \| echo 'Filename copied: ' . expand('%:t')<CR>
+
+" Copy current file directory path to Windows clipboard (WSL)
+noremap /dir :call system('/mnt/c/Windows/System32/clip.exe', expand('%:p:h')) \| echo 'Directory path copied: ' . expand('%:p:h')<CR>
