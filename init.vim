@@ -49,6 +49,8 @@ nnoremap c <Nop>
 nnoremap . <Nop>
 nnoremap - <Nop>
 nnoremap + <Nop>
+nnoremap [ <Nop>
+nnoremap ] <Nop>
 nnoremap <Esc> :nohlsearch<CR><Esc>
 
 " Highlight trailing whitespace
@@ -62,6 +64,9 @@ vnoremap <S-Down> 4j
 
 " Set the colors for Visual mode selection
 highlight Visual ctermbg=white ctermfg=black guibg=NONE guifg=NONE
+highlight netrwDir ctermfg=Magenta
+highlight netrwClassify ctermfg=Magenta
+highlight netrwExe ctermfg=Green
 
 " Make Alt+W behave like Ctrl+W
 nnoremap <A-w> <C-w>
@@ -71,6 +76,9 @@ noremap /file :call system('/mnt/c/Windows/System32/clip.exe', expand('%:t')) \|
 
 " Copy current file path to Windows clipboard (WSL)
 noremap /path :call system('/mnt/c/Windows/System32/clip.exe', expand('%:p')) \| echo 'Path: ' . expand('%:p')<CR>
+
+" Copy highlight group name under cursor to Windows clipboard (WSL)
+noremap /color :call system('/mnt/c/Windows/System32/clip.exe', synIDattr(synID(line('.'), col('.'), 1), 'name')) \| echo 'Highlight copied'<CR>
 
 " Disable case-changing shortcuts (gu, gU, ~) to prevent accidental text modification
 nnoremap gu <nop>
