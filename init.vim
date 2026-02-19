@@ -21,7 +21,7 @@ set laststatus=1
 
 " Netrw settings
 let g:netrw_banner = 0
-let g:netrw_bufsettings = "noma nomod nu nowrap nobl"
+let g:netrw_bufsettings = "noma nomod nonu nowrap nobl"
 
 " Visual mode: indent left/right and keep the selection
 vnoremap > >gv
