@@ -12,13 +12,20 @@ set tabstop=4
 set shiftwidth=4
 set belloff=all
 set noswapfile
-set laststatus=1
 set nobackup
 set nowritebackup
 set noundofile
-set laststatus=2
-set statusline=%F
 set viminfo=
+set noruler
+set laststatus=1
+
+" Netrw settings
+let g:netrw_banner = 0
+let g:netrw_bufsettings = "noma nomod nu nowrap nobl"
+
+" Visual mode: indent left/right and keep the selection
+vnoremap > >gv
+vnoremap < <gv
 
 " Filetype-specific indentation settings
 augroup filetype_indent
@@ -60,7 +67,15 @@ highlight Visual ctermbg=white ctermfg=black guibg=NONE guifg=NONE
 nnoremap <A-w> <C-w>
 
 " Copy current file name to Windows clipboard (WSL)
-noremap /filename :call system('/mnt/c/Windows/System32/clip.exe', expand('%:t')) \| echo 'Filename copied: ' . expand('%:t')<CR>
+noremap /file :call system('/mnt/c/Windows/System32/clip.exe', expand('%:t')) \| echo 'Filename: ' . expand('%:t')<CR>
 
-" Copy current file directory path to Windows clipboard (WSL)
-noremap /dir :call system('/mnt/c/Windows/System32/clip.exe', expand('%:p:h')) \| echo 'Directory path copied: ' . expand('%:p:h')<CR>
+" Copy current file path to Windows clipboard (WSL)
+noremap /path :call system('/mnt/c/Windows/System32/clip.exe', expand('%:p')) \| echo 'Path: ' . expand('%:p')<CR>
+
+" Disable case-changing shortcuts (gu, gU, ~) to prevent accidental text modification
+nnoremap gu <nop>
+nnoremap gU <nop>
+vnoremap gu <nop>
+vnoremap gU <nop>
+nnoremap ~ <nop>
+vnoremap ~ <nop>
