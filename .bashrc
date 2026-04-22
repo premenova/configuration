@@ -1,27 +1,31 @@
-# Move to home directory
+# go to home directory
 cd ~
 
-# Alias
-alias vi="sudo -E vi"
-alias py="python3 -m"
-alias .="sudo -E vi ."
+# run vi as root while keeping user environment
+alias vi='sudo -E vi'
 
-# Activate virus environment in Python
+# browse the current folder as root while keeping user environment
+alias .='sudo -E vi .'
+
+# shorthand for running Python modules via: python3 -m
+alias py='python3 -m'
+
+# define 'venv' as a shortcut to activate the environment in the .venv folder
 alias venv="source .venv/bin/activate"
 
-# Trying to be Windows
-alias cls="clear"
+# trying to be Windows
+alias cls='clear'
 _menu_complete_files_only() {
     local cur=${COMP_WORDS[COMP_CWORD]}
-    COMPREPLY=($(compgen -f -- "$cur"))
+    COMPREPLY=($(compgen -f -- '$cur'))
 }
 
-# Auto start tmux on login
+# if tmux is installed and not inside tmux, attach or create 'main' session
 if command -v tmux >/dev/null 2>&1 && [ -z "$TMUX" ]; then
     tmux attach-session -t main || tmux new-session -s main
 fi
 
-# Disable bash history
+# disable bash history
 export HISTFILE=/dev/null
 export HISTSIZE=10
 export HISTFILESIZE=0
