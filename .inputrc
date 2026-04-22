@@ -1,2 +1,6 @@
-# disable keyboard bell
+# disable the terminal bell entirely.
+# options are:
+#   audible (default) - ring the terminal bell
+#   visible           - flash the screen if possible
+#   none              - do nothing
 set bell-style none
