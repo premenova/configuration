@@ -14,7 +14,7 @@ set mouse=a
 set hlsearch
 
 " enable line nubmers
-set number
+set nonumber
 
 " converts tabs into spaces when you press the tab key
 set expandtab
@@ -74,6 +74,9 @@ highlight netrwExe ctermfg=Green
 " highlight Python strings
 highlight pythonString ctermfg=Red
 highlight pythonTripleQuotes ctermfg=Red
+
+" highlight matching parentheses
+highlight MatchParen ctermfg=red ctermbg=none guifg=red guibg=none
 
 " make Alt+W behave like Ctrl+W in Normal mode
 nnoremap <A-w> <C-w>
