@@ -1,136 +1,110 @@
-" copy selection to system clipboard
+" Copy the visual selection to the system clipboard
 vnoremap <C-c> "+y
-
-" paste from system clipboard
+" Paste from the system clipboard
 vnoremap <C-v> "+p
-
-" use the system clipboard (+ register) for all yanking/pasting
+" Use the system clipboard (register "+") for all yanking and pasting
 set clipboard=unnamedplus
 
-" enable full mouse support in all modes
+" Enable full mouse support in all modes
 set mouse=a
-
-" enable highlighting of all search matches
+" Highlight all search matches
 set hlsearch
-
-" enable line nubmers
+" Disable line numbers
 set nonumber
-
-" converts tabs into spaces when you press the tab key
+" Convert tabs to spaces when pressing Tab
 set expandtab
-
-" disable all bells
+" Disable all bells
 set belloff=all
 
-" disable swap file creation
+" Disable swap file creation
 set noswapfile
-
-" disable backup file creation
+" Disable backup file creation
 set nobackup
-
-" do not create a backup before overwriting files
+" Don't create a backup before overwriting a file
 set nowritebackup
-
-" disable persistent undo
+" Disable persistent undo
 set noundofile
-
-" disable the creation of any viminfo file
+" Disable creation of any viminfo file
 set viminfo=
 
-" disable the line and column number display in the status line
+" Hide the line/column number in the status line
 set noruler
-
-" disable Netrw banner and apply buffer settings
+" Disable the Netrw banner and set buffer options
 let g:netrw_banner = 0
 let g:netrw_bufsettings = 'noma nomod nonumber nowrap nobl'
 
-" highlight trailing whitespace
+" Highlight trailing whitespace
 match ErrorMsg /\s\+$/
 
-" reselect visual block after indenting (>) or outdenting (<)
+" Reselect the visual block after indenting (>) or outdenting (<)
 vnoremap > >gv
 vnoremap < <gv
-
-" move 4 characters/lines in Visual mode with Shift + arrow keys
+" Move 4 characters/lines in Visual mode with Shift + arrow keys
 vnoremap <S-Left> 4h
 vnoremap <S-Right> 4l
 vnoremap <S-Up> 4k
 vnoremap <S-Down> 4j
-
-" move to the beginning of the line using 'q'
+" Move to the start of the line with 'q'
 nnoremap q ^
-
-" move to the end of the line using 'e'
+" Move to the end of the line with 'e'
 nnoremap e $
 
-" highlight Visual selection
+" Visual selection highlight color
 highlight Visual ctermbg=white ctermfg=black
-
-" netrw file explorer highlighting
+" Netrw file explorer highlight colors
 highlight netrwDir ctermfg=Magenta
 highlight netrwClassify ctermfg=Magenta
 highlight netrwExe ctermfg=Green
-
-" highlight Python strings
+" Python string highlight colors
 highlight pythonString ctermfg=Red
 highlight pythonTripleQuotes ctermfg=Red
-
-" highlight matching parentheses
+" Matching parenthesis highlight color
 highlight MatchParen ctermfg=red ctermbg=none guifg=red guibg=none
 
-" make Alt+W behave like Ctrl+W in Normal mode
+" Make Alt+W behave like Ctrl+W in Normal mode
 nnoremap <A-w> <C-w>
-
-" disable unused/undesired mappings in Normal mode
+" Disable unused/unwanted mappings in Normal mode
 nnoremap gu <nop>
 nnoremap gU <nop>
 nnoremap ~  <nop>
-
-" disable unused/undesired mappings in Visual mode
+" Disable unused/unwanted mappings in Visual mode
 vnoremap gu <nop>
 vnoremap gU <nop>
 vnoremap ~  <nop>
-
-" clear search highlighting with Esc in Normal mode
+" Clear search highlighting with Esc in Normal mode
 nnoremap <silent> <Esc> :noh<CR>
 
-" indentation rules for HTML, CSS, and JavaScript files
+set tabstop=4
+set shiftwidth=4
+" Indentation rules for HTML, CSS, and JavaScript files
 augroup filetype_indent
   autocmd FileType html,css,javascript setlocal tabstop=2
   autocmd FileType html,css,javascript setlocal shiftwidth=2
 augroup END
 
-" disable the 'a' key (append) in Normal mode
+" Disable 'a' (append) in Normal mode
 nnoremap a <Nop>
-
-" disable the 's' key (substitute) in Normal mode
+" Disable 's' (substitute) in Normal mode
 nnoremap s <Nop>
-
-" disable arrow keys in normal mode
+" Disable movement keys (h/j/k/l) in Normal mode
 nnoremap h <Nop>
 nnoremap j <Nop>
 nnoremap k <Nop>
 nnoremap l <Nop>
-
-" disable the 'x' key (delete character) in Normal mode
+" Disable 'x' (delete character) in Normal mode
 nnoremap x <Nop>
-
-" disable the 'c' key (change) in Normal mode to prevent changing the current line
+" Disable 'c' (change) in Normal mode to prevent changing the current line
 nnoremap c <Nop>
-
-" disable [ in Normal mode
+" Disable '[' in Normal mode
 nnoremap [ <Nop>
-
-" disable ] in Normal mode
+" Disable ']' in Normal mode
 nnoremap ] <Nop>
-
-" disable redo to prevent accidental changes
+" Disable redo to prevent accidental changes
 nnoremap <C-r> <Nop>
-
-" disable the dot operator to prevent accidental command repetition
+" Disable the dot operator to prevent accidental command repetition
 nnoremap . <Nop>
 
-" toggle 88-char colorcolumn for Black formatter
+" Toggle an 88-column colorcolumn for the Black formatter
 function! ToggleCC()
   if &colorcolumn == ''
     set colorcolumn=88
@@ -138,18 +112,19 @@ function! ToggleCC()
     set colorcolumn=
   endif
 endfunction
-
-" user command to toggle colorcolumn
+" User command to toggle the colorcolumn
 command! Setcc call ToggleCC()
-
-" command-line abbreviation: setcc -> Setcc
+" Command-line abbreviation: setcc -> Setcc
 cnoreabbrev setcc Setcc
 
-" copy current file name to Windows clipboard (WSL)
+" Copy the current filename to the Windows clipboard (WSL)
 noremap /file :call system('/mnt/c/Windows/System32/clip.exe', expand('%:t')) \| echo 'Filename: ' . expand('%:t')<CR>
-
-" copy current file path to Windows clipboard (WSL)
+" Copy the current file path to the Windows clipboard (WSL)
 noremap /path :call system('/mnt/c/Windows/System32/clip.exe', expand('%:p')) \| echo 'Path: ' . expand('%:p')<CR>
-
-" copy highlight group name under cursor to Windows clipboard (WSL)
+" Copy the highlight group name under the cursor to the Windows clipboard (WSL)
 noremap /color :call system('/mnt/c/Windows/System32/clip.exe', synIDattr(synID(line('.'), col('.'), 1), 'name')) \| echo 'Highlight copied'<CR>
+
+" Hide dotfiles from the Netrw listing
+let g:netrw_list_hide = '\(^\|\s\s\)\.\S\+'
+" Enable line numbers
+set number
