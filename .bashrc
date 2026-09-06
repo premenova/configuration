@@ -33,3 +33,6 @@ set -o history
 
 # Cycle through completion candidates with Tab
 bind '"\C-i":menu-complete'
+
+# Display file timestamps in KST (YYYY-MM-DD HH:MM)
+alias ls="ls --time-style='+%Y-%m-%d %H:%M (KST)'"
