@@ -30,3 +30,6 @@ export HISTFILE=/dev/null
 export HISTSIZE=10
 export HISTFILESIZE=0
 set -o history
+
+# Cycle through completion candidates with Tab
+bind '"\C-i":menu-complete'
