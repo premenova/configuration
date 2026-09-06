@@ -35,4 +35,4 @@ set -o history
 bind '"\C-i":menu-complete'
 
 # Display file timestamps in KST (YYYY-MM-DD HH:MM)
-alias ls="ls --time-style='+%Y-%m-%d %H:%M (KST)'"
+alias ls="ls --color=auto --time-style='+%Y-%m-%d %H:%M (KST)'"
